@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1259
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Doodle Jump", "..\Doodle Jump\Doodle Jump\Doodle Jump.vcxproj", "{E0BA3F09-E7C2-4366-A6D1-9626A5500189}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tetris", "..\Tetris\Tetris\Tetris.vcxproj", "{8F41B158-742B-428C-8DE9-3838CAF21AFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Debug|x64.ActiveCfg = Debug|x64
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Debug|x64.Build.0 = Debug|x64
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Debug|x86.ActiveCfg = Debug|Win32
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Debug|x86.Build.0 = Debug|Win32
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Release|x64.ActiveCfg = Release|x64
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Release|x64.Build.0 = Release|x64
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Release|x86.ActiveCfg = Release|Win32
+		{E0BA3F09-E7C2-4366-A6D1-9626A5500189}.Release|x86.Build.0 = Release|Win32
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Debug|x64.ActiveCfg = Debug|x64
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Debug|x64.Build.0 = Debug|x64
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Debug|x86.ActiveCfg = Debug|Win32
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Debug|x86.Build.0 = Debug|Win32
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Release|x64.ActiveCfg = Release|x64
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Release|x64.Build.0 = Release|x64
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Release|x86.ActiveCfg = Release|Win32
+		{8F41B158-742B-428C-8DE9-3838CAF21AFB}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2CC84E8E-F9E8-4B13-A3FA-974A75F4E047}
+	EndGlobalSection
+EndGlobal
