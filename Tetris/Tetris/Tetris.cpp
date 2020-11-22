@@ -15,6 +15,8 @@ using namespace sf;
 #pragma comment (lib,"sfml-audio.lib")
 #endif
 
+#include "InputHandler.h"
+
 const int M = 20;
 const int N = 10;
 bool gameover = false;
@@ -58,6 +60,7 @@ bool check()
 	return 1;
 };
 
+void handleInput(RenderWindow& window, bool& rotate, float& delay, int& dx);
 void init()
 {
 	time_t curTime;
@@ -71,8 +74,12 @@ void init()
 		a[i].y = figures[n][i] / 2;
 	}
 }
+
+
+
 int main()
 {
+	InputHandler inputHandler;
 	time_t curTime;	
 	srand((unsigned)time(&curTime));
 
@@ -86,7 +93,7 @@ int main()
 	
 	Sound bgm;
 	bgm.setBuffer(sbuf);
-	bgm.play();
+	
 
 	RenderWindow window(VideoMode(320, 480), "The Game!");
 
@@ -98,38 +105,34 @@ int main()
 
 	Sprite s(t1), background(t2), frame(t3);
 	Sprite over(t4);
-
-	int dx = 0; bool rotate = 0; int colorNum = 1;
-	float timer = 0.0f, delay = 0.3f;
-
 	Clock clock;
+	Game game;	
 
+	int colorNum = 1;
+	float timer = 0.0f;
+	
+	
 	while (window.isOpen())
 	{
+		
+
 		float time = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		timer += time;
 
-		Event e;
-		while (window.pollEvent(e))
-		{
-			if (e.type == Event::Closed)
-				window.close();
+		Command* cmd = inputHandler.handleInput(window);
+		if(cmd != nullptr) 
+			cmd->execute(game);
 
-			if (e.type == Event::KeyPressed)
-				if (e.key.code == Keyboard::Up) rotate = true;
-				else if (e.key.code == Keyboard::Left) dx = -1;
-				else if (e.key.code == Keyboard::Right) dx = 1;
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down)) delay = 0.05f;
+		if (bgm.getStatus() == sf::SoundSource::Status::Stopped)
+			bgm.play();
 
 		//// <- Move -> ///
-		for (int i = 0; i < 4; i++) { b[i] = a[i]; a[i].x += dx; }
+		for (int i = 0; i < 4; i++) { b[i] = a[i]; a[i].x += game.dx; }
 		if (!check()) for (int i = 0; i < 4; i++) a[i] = b[i];
 
 		//////Rotate//////
-		if (rotate)
+		if (game.rotate)
 		{
 			Point p = a[1]; //center of rotation
 			for (int i = 0; i < 4; i++)
@@ -143,7 +146,7 @@ int main()
 		}
 
 		///////Tick//////
-		if (timer > delay)
+		if (timer > game.delay)
 		{
 			for (int i = 0; i < 4; i++) { b[i] = a[i]; a[i].y += 1; }
 
@@ -176,7 +179,7 @@ int main()
 			if (count < N) k--;			
 		}
 
-		dx = 0; rotate = false; delay = 0.3f;
+		game.reset();
 
 		/////////draw//////////
 		window.clear(Color::White);
@@ -210,6 +213,27 @@ int main()
 		window.display();
 		if (gameover) break;
 	}
+
+	
 	getchar();
 	return 0;
 }
+
+
+void handleInput(RenderWindow& window, bool& rotate,float& delay,int& dx)
+{
+	Event e;
+	while (window.pollEvent(e))
+	{
+		if (e.type == Event::Closed)
+			window.close();
+
+		if (e.type == Event::KeyPressed)
+			if (e.key.code == Keyboard::Up) rotate = true;
+			else if (e.key.code == Keyboard::Left) dx = -1;
+			else if (e.key.code == Keyboard::Right) dx = 1;
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::Down)) delay = 0.05f;
+}
+
